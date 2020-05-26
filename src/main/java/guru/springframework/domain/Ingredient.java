@@ -13,8 +13,12 @@ public class Ingredient {
     private BigDecimal amount;
 
     @ManyToOne
-    //@JoinColumn(name = "RECIPE_ID")
+    //Buna gerek yok default değerler zaten aşağıdaki gibi entity'nin sahibini de mappedBy diyerek Recipe'de belirttik
+    //@JoinColumn(name = "RECIPE_ID", referencedColumnName = "Id")
     private Recipe recipe;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitOfMeasure uom;
 
     public Long getId() {
         return id;
@@ -46,5 +50,13 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public UnitOfMeasure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 }
