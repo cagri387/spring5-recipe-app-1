@@ -3,6 +3,9 @@ package guru.springframework.domain;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * Created by jt on 6/13/17.
+ */
 @Entity
 public class Ingredient {
 
@@ -12,13 +15,11 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    @ManyToOne
-    //Buna gerek yok default değerler zaten aşağıdaki gibi entity'nin sahibini de mappedBy diyerek Recipe'de belirttik
-    //@JoinColumn(name = "RECIPE_ID", referencedColumnName = "Id")
-    private Recipe recipe;
-
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
+
+    @ManyToOne
+    private Recipe recipe;
 
     public Long getId() {
         return id;
